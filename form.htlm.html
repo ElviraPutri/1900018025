@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+</head>
+<body bgcolor="#7AAFD2">
+	<div  style="border: 1px solid black">
+	<h1 align="center">Isi Form</h1>
+	<form action="/action_page.php">
+	<br><br>
+		<table align="center" border="0" width="60%" cellspacing="5">
+		<tr>
+			<td>Nama</td>
+			<td> : </td>
+			<td>
+			<input type="text" id="name" name="dname">
+			</td>	
+		</tr>
+		<tr>
+			<td>Alamat</td>
+			<td> : </td>
+			<td>
+			<input type="text" id="almtname" name="aname">
+			</td>
+		</tr>
+		<tr>
+			<td>Telp</td>
+			<td> : </td>
+			<td>
+			<input type="text" id="tlpname" name="tlpname">	
+			</td>
+		</tr>
+		<tr>
+			<td>Jenis Kelamin</td>
+			<td> : </td>
+			<td>
+				<input type="radio" name="jkname"> Laki-Laki
+				<input type="radio" name="jkname"> Perempuan
+			</td>
+		</tr>
+		<tr>
+			<td>GolDar</td>
+			<td> : </td>
+			<td>
+				<input type="checkbox" name="goldar"> A
+				<input type="checkbox" name="goldar"> B
+				<input type="checkbox" name="goldar"> O
+				<input type="checkbox" name="goldar"> AB
+			</td>
+		</tr>
+		<tr>
+			<td>Agama</td>
+			<td> : </td>
+			<td>
+			<select name="aname">
+			<option value="aname0"> Pilih</option>
+			<option value="aname1"> Islam</option>
+			<option value="aname2"> Kristen</option>
+			<option value="aname3"> Khatolik</option>
+			<option value="aname4"> Hindu</option>
+			<option value="aname5"> Budha</option>
+			</select>	
+			</td>
+		</tr>
+		<tr>
+			<td>Prestasi</td>
+			<td> : </td>
+			<td>
+			<textarea name="pname" cols="50" rows="5"></textarea>	
+			</td>
+		</tr>
+	</table>
+	<br><br>
+	<center>
+	<input type="submit" value="Simpan">
+	<input type="submit" value="Batal">		
+	</center>
+	<br><br>
+	</div>
+</form>
+</body>
+</html>
