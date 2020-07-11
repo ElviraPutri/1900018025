@@ -1,82 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hasil Input Data</title>
-	<style type="text/css">
-	body{
-		background: #97998B;
-		font-family: Lucida Bright;
-		font-size: 14;
-	}
-	.hasil{
-		margin: 90px auto;
-		width: 500px;
-		background: #BA7543;
-		padding: 35px 25px;
-		border-radius: 5px;
-		word-spacing: 2px;		
-		opacity: 0.9;
-	}
-	.link{
-		text-align: center;			
-	}
-	button{
-		padding: 4px 25px;
-		border-radius: 5px;
-		background-color: #69A5B4;
-	}		
-	</style>
+	<title>Hasil Input Data Pos Kita</title>
+
+	<link rel="stylesheet" type="text/css" href="tp.css">
 
 </head>
-<body>
-	<div class="hasil">
-	<?php 
-	if(isset($_POST['submit'])){
-		$nama = $_POST['nama'];
-		$alamat = $_POST['alamat'];
-		$tlp = $_POST['tlp']; 
-		$jk = @$_POST['jk'];
-		$goldar = @$_POST['goldar'];
-		$agama = $_POST['agama'];
-		$prestasi = $_POST['prestasi'];
+<body class="isi" id="hasil">
 
-		$error = false;
+<div class="all">
+	<h1 id="h1">DATA HASIL INPUT</h1>
+	<br>
+	<hr>
+	<br>
 
-		echo "<br><h1 align='center'> DATA DIRI </h1><br>";
-		echo "<table align='center' cellpadding = '10px'>
-				<hr><br>";
-		echo "<tr><td> Nama </td><td> : $nama	</td></tr>";
-		echo "<tr><td> Alamat </td><td> : $alamat </td></tr>";
-		echo "<tr><td> Tlp </td><td> : $tlp </td></tr>";		
-		if( $jk == ''){
-			echo "<tr><td> Jenis Kelamin </td><td> : Tidak dipilih </td></tr>";
-			$error = true;
-		} else{
-			echo "<tr><td> Jenis Kelamin </td><td> : $jk </td></tr>"; 
-		}
+<?php 
+
+	$fp = fopen("form.txt", "a+");
+
+	echo "<table align='center' border:0 cellpadding = 10>";
+	while ($isi = fgets($fp,200)) {
+		$pisah = explode('|', $isi);
+
+		echo "<center>";
+		echo "<tr><td>== DATA PENGIRIM === </td></tr>";		
+		echo "<tr><td> Nama </td><td>: ".$pisah[0]."</td></tr>";
+		echo "<tr><td> Alamat </td><td>: ".$pisah[1]."</td></tr>";
+		echo "<tr><td> No. Tlp </td><td>: ".$pisah[2]."</td></tr>";
+
+		echo "<tr><td>== DATA PENERIMA === </td></tr>";		
+		echo "<tr><td> Nama </td><td>: ".$pisah[3]."</td></tr>";
+		echo "<tr><td> Alamat </td><td>: ".$pisah[4]."</td></tr>";
+		echo "<tr><td> No. Tlp </td><td>: ".$pisah[5]."</td></tr>";
+
+		echo "<tr><td>== RINCIHAN PAKET === </td></tr>";
+		echo "<tr><td> Deskripsi </td><td>: ".$pisah[6]."</td></tr>";
+		echo "<tr><td> Jumlah </td><td>: ".$pisah[7]."</td></tr>";
+		echo "<tr><td> Berat </td><td>: ".$pisah[8]."</td></tr>";
+		echo "<tr><td> Volume </td><td>: P : ".$pisah[9]."cm,  L : ".$pisah[10]."cm,  T : ".$pisah[11]."cm</td></tr>";
+		echo "<tr><td> Jarak </td><td>: ".$pisah[12]."</td></tr>";
+		echo "<tr><td> Layanan </td><td>: ".$pisah[13]."</td></tr>";
+
+		echo "<tr><td>== RINCIHAN TARIF LAYANAN PENGIRIMAN PAKET === </td></tr>";	
+		echo "<tr><td> Tarif Berat </td><td>: ".$pisah[14]."</td></tr>";
+		echo "<tr><td> Tarif Volume </td><td>: ".$pisah[15]."</td></tr>";
+		echo "<tr><td> Tarif Jarak </td><td>: ".$pisah[16]."</td></tr>";
+		echo "<tr><td> Tarif Layanan </td><td>: ".$pisah[17]."</td></tr>";
+		echo "<tr><td> Total Tarif </td><td>: ".$pisah[18]."</td></tr>";
 		
-		if( $goldar == ''){
-			echo "<tr><td> Golongan Darah </td><td> : Tidak dipilih </td></tr>";
-			$error = true;
-		} else{
-			echo "<tr><td> Golongan Darah </td><td> : $goldar </td></tr>"; 
-		}				
-				
-		echo "<tr><td> Agama </td><td> : $agama </td></tr>";
-
-		if( $prestasi == ''){
-			echo "<tr><td> Prestasi </td><td> : Tidak diisi </td></tr>";
-			$error = true;
-		} else{
-			echo "<tr><td> Golongan Darah </td><td> : $prestasi </td></tr>"; 
-		}
-
-		echo "</table><br><br>";
+		echo "<tr><td>&nbsp;<hr></td><td>&nbsp;<hr></td></tr>";
+		echo "</center>";
 	}
- 	?>
- 	<div class="link">
- 	<button><a href="form.html"> Kembali</a></button></div>
- 	</div>	
+	echo "</table>";
+
+ ?>
+
+	<br><br>
+	<center>
+	<a href="index.html">: : Kembali Ke Menu Awal : :</a>
+	</center>
+	<br>
+ </div>
+
+	<div class="footer">
+		Tugas Proyek [1900018025] _ &copy; ElviraPC
+	</div>	
+
 </body>
 </html>
-
