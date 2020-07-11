@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="tp.css">
 
 </head>
-<body class="isi" id="hasil">
+<body id="hasil" class="isi" >
 
 <div class="all">
 	<h1 id="h1">DATA HASIL INPUT</h1>
