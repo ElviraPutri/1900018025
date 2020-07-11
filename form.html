@@ -1,141 +1,279 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Form</title>
+	<title>Pos Kita</title>
 
-	<style type="text/css">
-	body{
-		background: #97998B;
-		font-family: Lucida Bright;
-		font-size: 14;
-	}
-	.all{
-		margin: 90px auto;
-		width: 500px;
-		background: #BA7543;
-		padding: 35px 25px;
-		border-radius: 5px;
-		opacity: 0.9;
-	}
-	h1{
-		text-align: center;
-	}
-	table{
-		border: 0;
-		width: 90%;
-		border-spacing: 5px;
-		word-spacing: 5px;
-	}
-	td{
-		padding: 7px;
-	}
-	input{
-		border-radius: 5px;
-		padding: 4px 25px;		
-	}
-	select{
-		border-radius: 5px;
-		padding: 4px 20px;
-	}
-	textarea{
-		width: 100%;
-		border-radius: 5px;
-	}
-	.tombol{
-		text-align: center;
-		padding: 5px;
-		word-spacing: 25px;
-	}
-	#sub{
-		background-color: #69A5B4;
-	}
-	#re{
-		background-color: #752B30;		
-	}	
+	<link rel="stylesheet" type="text/css" href="tp.css">
 
-	</style>
+	<script language="Javascript">
+	function hitungtotal() {
+		var jumlah = (document.fform.jum.value);
+		var berat = (document.fform.b.value);
+		var pj = (document.fform.p.value);
+		var lb = (document.fform.l.value);
+		var tg = (document.fform.t.value);
+		var jarak = (document.fform.j.value);
+		var layn = (document.fform.layanan.value);
+		
+		var tb = 0.0;
+		var tj = 0.0;
+		var tv = 0.0;
+		var tl = 0.0;
+		var sub = 0.0;
+		var total = 0.0;
+
+		//Tarif Berat
+		if(berat <= 2){
+			tb = 0;
+		} 
+		else if (berat <= 5) {
+			tb = 5000;
+		} 
+		else if (berat <= 10){
+			tb = 7000;
+		}else{
+			tb = 10000;
+		}
+
+		//Tarif Volume
+				tv = (pj*lb*tg) * 200;
+
+		//Tarif Jarak
+		if(jarak <= 10){
+			tj = 0;
+		} 
+		else if (jarak <= 20) {
+			tj = 10000;
+		} 
+		else if (jarak <=30){
+			tj = 13000;
+		}else{
+			tj = 15000;
+		}		
+
+		//Tarif Layanan
+		if (layn=="Standar") {
+			tl = 15000;
+		}
+
+		else if (layn=="Khusus") {
+			tl = 20000;
+		}
+
+		else if (layn=="Kilat") {
+			tl = 25000;
+		}
+
+		sub = tb + tj + tv + tl;
+		total = jumlah * sub;
+
+		document.fform.tarifb.value=eval(tb);
+		document.fform.tarifv.value=eval(tv);
+		document.fform.tarifj.value=eval(tj);
+		document.fform.tarifl.value=eval(tl);
+		document.fform.tarift.value=eval(total);
+	}
+
+	</script>
 
 </head>
-<body>
-	<div  class="all">
-	<h1>Isi Form</h1>
-	<hr>
+<body class="isi">
 
-	<form action="form.php" method="post">
+	<div  class="all">
+
+	<h1 id="h1">Form Pengiriman Paket <br> === POS KITA ===</h1>
+	<hr>
 	<br>
-		<table style="word-spacing: ">
+		
+	<table class="form">
+	 	<tr>
+	 		<td>
+		<form name="fform" action="form_proses.php" method="post">
+		<br>
+			<table class="form1">
+			<tr>
+				<td id="judul"><h3>=== Data Pengirim ===</h3></td>
+			</tr>
+			<tr>
+				<td>Nama</td>
+				<td> : </td>
+				<td>
+				<input type="text" name="nama" required="">
+				</td>	
+			</tr>
+			<tr>
+				<td>Alamat</td>
+				<td> : </td>
+				<td>
+				<textarea name="alamat" required=""></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Telp</td>
+				<td> : </td>
+				<td>
+				<input type="tel" name="tlp" pattern="[0-9]{12}" placeholder="format : 08**********" required="">	
+				</td>
+			</tr>
+			<tr>
+				<td id="judul"><h3>=== Data Penerima ===</h3></td>
+			</tr>
+			<tr>
+				<td>Nama</td>
+				<td> : </td>
+				<td>
+				<input type="text" name="nama1" required="">
+				</td>	
+			</tr>
+			<tr>
+				<td>Alamat</td>
+				<td> : </td>
+				<td>
+				<textarea name="alamat1" required=""></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Telp</td>
+				<td> : </td>
+				<td>
+				<input type="tel" name="tlp1" pattern="[0-9]{12}" placeholder="format : 08**********" required="">	
+				</td>
+			</tr>
+		</table>
+	
+	</td>
+	<td>
+
+		<table class="form2">
+		<tr>	
+			<td id="judul"><h3>=== Rincihan Paket ===</h3></td>
+		</tr>
 		<tr>
-			<td>Nama</td>
+			<td>Deskripsi</td>
 			<td> : </td>
 			<td>
-			<input type="text" name="nama" required="">
+			<input type="text" name="des" required="">
 			</td>	
 		</tr>
 		<tr>
-			<td>Alamat</td>
+			<td>Jumlah</td>
 			<td> : </td>
 			<td>
-			<input type="text" name="alamat" required="">
+			<input type="text" name="jum" required="">
 			</td>
 		</tr>
 		<tr>
-			<td>Telp</td>
+			<td>Berat</td>
 			<td> : </td>
 			<td>
-			<input type="tel" name="tlp" pattern="[0-9]{12}" placeholder="format : 08**********" required="">	
+			<input type="text" name="b" required="">	
 			</td>
 		</tr>
 		<tr>
-			<td>Jenis Kelamin</td>
+			<td>Volume</td>
+			<td> : </td>
+			<td>P : 
+			<input type="text" name="p" id="box" required="">
+			 L : 
+			<input type="text" name="l" id="box"required="">
+			 T : 
+			<input type="text" name="t" id="box" required="">
+			</td>					
+		</tr>
+		<tr>
+			<td>Jarak</td>
 			<td> : </td>
 			<td>
-				<input type="radio" value="Laki-Laki" name="jk" > Laki-Laki
-				<input type="radio" value="Perempuan" name="jk" > Perempuan
+				<input type="text" name="j" required="">
 			</td>
 		</tr>
 		<tr>
-			<td>GolDar</td>
+			<td>Layanan Pengiriman Paket</td>
 			<td> : </td>
 			<td>
-				<input type="checkbox" name="goldar" value="A" > A
-				<input type="checkbox" name="goldar" value="B" > B
-				<input type="checkbox" name="goldar" value="O" > O
-				<input type="checkbox" name="goldar" value="AB" > AB
-			</td>
-		</tr>
-		<tr>
-			<td>Agama</td>
-			<td> : </td>
-			<td>
-			<select name="agama">
-			<option > --- </option>
-			<option > Islam</option>
-			<option > Kristen</option>
-			<option > Khatolik</option>
-			<option > Hindu</option>
-			<option > Budha</option>
+			<select name="layanan">
+			<option value="0" > --- </option>
+			<option value="Standar"> Standar</option>
+			<option value="Khusus"> Khusus</option>
+			<option value="Kilat"> Kilat</option>
 			</select>	
 			</td>
 		</tr>
+
 		<tr>
-			<td>Prestasi</td>
-			<td> : </td>
 			<td>
-			<textarea name="prestasi"></textarea>	
+			<br>
+			<input type="reset" class="tombol" id="re" value="Ulang">		
+			<br><br>		
 			</td>
 		</tr>
-	</table>
-	<br><br>
+		
+			<tr>
+				<td>Tarif Berat</td>
+				<td> : </td>
+				<td>
+					<input type="text" name="tarifb" placeholder="0" ><br>
+				</td>
+			</tr>
+			<tr>
+				<td>Tarif Volume</td>
+				<td> : </td>
+				<td>
+					<input type="text" name="tarifv" placeholder="0" ><br>
+				</td>
+			</tr>
+			<tr>
+				<td>Tarif Jarak</td>
+				<td> : </td>
+				<td>
+					<input type="text" name="tarifj" placeholder="0" ><br>
+				</td>
+			</tr>
+			<tr>
+				<td>Tarif Layanan</td>
+				<td> : </td>
+				<td>
+					<input type="text" name="tarifl"  placeholder="0" ><br>
+				</td>
+			</tr>
+			<br><br>
+			<tr>
+				<td>Total Tarif Kirim Paket</td>
+				<td> : </td>
+				<td>
+					<input type="text" name="tarift"  placeholder="0"><br>
+				</td>
+			</tr>
+
+			<tr>
+				<td>	
+				<br>
+				<button onclick="hitungtotal()" class="tombol" id="sub">Hitung</button>
+				<br><br>
+				</td>
+			</tr>	
+		</table>
+
+		</form>
 	
-	<div class="tombol">
-	<input type="submit" id="sub" name="submit" value="Simpan">
-	<input type="reset" id="re" value="Batal">		
-	<br><br>	
-	</div>
+	 	</td>
 
+	 </tr>
+ 
+	 </table>
+ 	
+ 	<br><br>	
+	<center>
+	<a href="index.html">: : Kembali Ke Menu Awal : :</a>
+	</center>
+	<br>
 
+</div>	
+	
+	<div class="footer">
+		Tugas Proyek [1900018025] _ &copy; ElviraPC
 	</div>
-</form>
+	
 </div>
 </body>
 </html>
